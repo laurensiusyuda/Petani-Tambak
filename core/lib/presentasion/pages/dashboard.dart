@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:utils/utils.dart';
 
-class Dashboard extends StatelessWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,50 @@ class Dashboard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kSecondaryColor,
-        title: const Text('Dashboard'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Image.asset(
+              'asset/Logo.png',
+              fit: BoxFit.cover,
+              height: 30.0,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              'Petani Tambak',
+              style: GoogleFonts.lato(
+                textStyle: const TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          InkWell(
+              onTap: () {},
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: user.photoURL != null
+                    ? Image.network(
+                        "${user.photoURL}",
+                        height: 100,
+                        width: 100,
+                      )
+                    : IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.account_circle,
+                          size: 30.0,
+                          color: Colors.white,
+                        ),
+                      ),
+              ))
+        ],
       ),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {

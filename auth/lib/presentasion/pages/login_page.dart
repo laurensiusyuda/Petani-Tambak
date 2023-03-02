@@ -3,6 +3,7 @@ import 'package:auth/presentasion/bloc/auth_event.dart';
 import 'package:auth/presentasion/bloc/auth_state.dart';
 import 'package:auth/presentasion/pages/signup_page.dart';
 import 'package:core/core.dart';
+import 'package:core/presentasion/pages/dashboard.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 import 'package:utils/utils.dart';
@@ -43,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
         listener: (context, state) {
           if (state is Authenticated) {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const Dashboard()));
+                MaterialPageRoute(builder: (context) => const HomePage()));
           }
           if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(

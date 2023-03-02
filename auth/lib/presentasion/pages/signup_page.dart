@@ -1,4 +1,5 @@
 import 'package:auth/auth.dart';
+import 'package:core/presentasion/pages/dashboard.dart';
 import 'package:utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +43,7 @@ class _SignInPageState extends State<SignInPage> {
         listener: (context, state) {
           if (state is Authenticated) {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const Dashboard()));
+                MaterialPageRoute(builder: (context) => const HomePage()));
           }
           if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(
