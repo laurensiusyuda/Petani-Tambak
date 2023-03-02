@@ -45,12 +45,12 @@ class HomePage extends StatelessWidget {
           InkWell(
               onTap: () {},
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(40),
                 child: user.photoURL != null
                     ? Image.network(
                         "${user.photoURL}",
-                        height: 100,
-                        width: 100,
+                        height: 50,
+                        width: 50,
                       )
                     : IconButton(
                         onPressed: () {},
