@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
         listener: (context, state) {
           if (state is Authenticated) {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
+                MaterialPageRoute(builder: (context) => const Dashboard()));
           }
           if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(

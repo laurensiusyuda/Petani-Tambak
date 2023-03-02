@@ -8,7 +8,6 @@ import 'package:auth/presentasion/bloc/auth_bloc.dart';
 import 'package:auth/presentasion/bloc/auth_event.dart';
 import 'package:auth/presentasion/bloc/auth_state.dart';
 import 'package:sign_in_button/sign_in_button.dart';
-import 'package:core/presentasion/pages/home_page.dart';
 import 'package:auth/presentasion/widget/email_field.dart';
 import 'package:auth/presentasion/widget/button_signin.dart';
 import 'package:auth/presentasion/widget/password_field.dart';
@@ -43,7 +42,7 @@ class _SignInPageState extends State<SignInPage> {
         listener: (context, state) {
           if (state is Authenticated) {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
+                MaterialPageRoute(builder: (context) => const Dashboard()));
           }
           if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(

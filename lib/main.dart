@@ -1,5 +1,4 @@
 import 'package:core/presentasion/pages/dashboard.dart';
-
 import 'firebase_options.dart';
 import 'package:core/core.dart';
 import 'package:utils/utils.dart';
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                const HomePage();
+                const Dashboard();
               }
               return MaterialApp(
                 title: 'Udangku',
