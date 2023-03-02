@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "951619711563",
+    "project_id": "tambakudangv2",
+    "storage_bucket": "tambakudangv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951619711563:android:e716ad71f2ceed8b6e53ce",
+        "android_client_info": {
+          "package_name": "com.example.tambak_udang_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951619711563-4iuom47blsr1n2di4kjuhpa96leo8idi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tambak_udang_v2",
+            "certificate_hash": "a8075d66772d72b6937fa9b20d0ff61bc596ddce"
+          }
+        },
+        {
+          "client_id": "951619711563-jal5dn7nrk7sb63bo9o5bei88ovhkj7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCETFR0pcF8Lmy4xjecVTr3cWvbOwelMSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951619711563-9piov5jo99vm4c34ho317e33im6pmr8d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "951619711563-rsvro3tu39015updm56ppjq6p62b5t7s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tambakUdangV2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
