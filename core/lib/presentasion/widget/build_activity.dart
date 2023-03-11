@@ -17,7 +17,7 @@ class _BuildDashboardState extends State<BuildDashboard> {
     final user = FirebaseAuth.instance.currentUser!;
     return Container(
       decoration: BoxDecoration(
-        color: kSecondaryColor,
+        color: kSecondaryColor.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20.0),
       ),
       padding: const EdgeInsets.all(20.0),
