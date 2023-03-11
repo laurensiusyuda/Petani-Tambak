@@ -23,13 +23,6 @@ class _OnBoardState extends State<OnBoard> {
     );
   }
 
-  void _onButtonEnd(context) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const SignInPage()),
-    );
-  }
-
   Widget _buildImage(String assetName, [double width = 350]) {
     return Image.asset('asset/$assetName', width: width);
   }
@@ -38,6 +31,7 @@ class _OnBoardState extends State<OnBoard> {
   Widget build(BuildContext context) {
     final bodyStyle = GoogleFonts.lato(
         textStyle: const TextStyle(fontSize: 19.0, color: Colors.white));
+
     final pageDecoration = PageDecoration(
       titleTextStyle: GoogleFonts.lato(
           textStyle: const TextStyle(
@@ -52,9 +46,10 @@ class _OnBoardState extends State<OnBoard> {
 
     return IntroductionScreen(
       key: introKey,
-      globalBackgroundColor: Colors.white,
+      globalBackgroundColor: kMainColor,
       allowImplicitScrolling: true,
       autoScrollDuration: 3000,
+
       // membuat global header
       globalHeader: Align(
         alignment: Alignment.topRight,
@@ -63,27 +58,6 @@ class _OnBoardState extends State<OnBoard> {
             padding: const EdgeInsets.only(top: 16, right: 16),
             child: _buildImage('Logo_OnBoard.png', 100),
           ),
-        ),
-      ),
-
-      // membuat global footer
-      globalFooter: SizedBox(
-        width: double.infinity,
-        height: 70,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: kButtonColor,
-          ),
-          child: Text(
-            'Dafar Akun',
-            style: GoogleFonts.lato(
-              textStyle: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
-          ),
-          onPressed: () => _onButtonEnd(context),
         ),
       ),
 
@@ -108,6 +82,8 @@ class _OnBoardState extends State<OnBoard> {
           decoration: pageDecoration,
         ),
       ],
+
+      // fungsi button
       onDone: () => _onIntroEnd(context),
       showSkipButton: false,
       skipOrBackFlex: 0,
@@ -125,6 +101,7 @@ class _OnBoardState extends State<OnBoard> {
               const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
         ),
       ),
+
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: kIsWeb

@@ -2,6 +2,7 @@ import 'package:auth/auth.dart';
 import 'package:auth/presentasion/bloc/auth_bloc.dart';
 import 'package:auth/presentasion/bloc/auth_event.dart';
 import 'package:auth/presentasion/bloc/auth_state.dart';
+import 'package:core/presentasion/widget/build_activity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,7 @@ class Dashboard extends StatelessWidget {
     // Getting the user from the FirebaseAuth Instance
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
+      backgroundColor: kMainColor,
       appBar: AppBar(
         backgroundColor: kSecondaryColor,
         title: Row(
@@ -65,6 +67,7 @@ class Dashboard extends StatelessWidget {
       ),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
+          // jika tidak login
           if (state is UnAuthenticated) {
             Navigator.pushAndRemoveUntil(
               context,
@@ -75,38 +78,24 @@ class Dashboard extends StatelessWidget {
             );
           }
         },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Email: \n ${user.email}',
-                style: const TextStyle(fontSize: 24),
-                textAlign: TextAlign.center,
-              ),
-              user.photoURL != null
-                  ? Image.network("${user.photoURL}")
-                  : Container(),
-              user.displayName != null
-                  ? Text("${user.displayName}")
-                  : Container(),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                child: Text(
-                  'Sign Out',
-                  style: GoogleFonts.lato(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+
+        // jika login
+        child: SingleChildScrollView(
+          child: Container(
+            margin:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const BuildDashboard(),
+                const SizedBox(
+                  height: 30,
                 ),
-                onPressed: () {
-                  // Signing out the user
-                  context.read<AuthBloc>().add(SignOutRequested());
-                },
-              ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),

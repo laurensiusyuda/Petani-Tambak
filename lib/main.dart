@@ -1,4 +1,3 @@
-import 'package:core/presentasion/pages/dashboard.dart';
 import 'firebase_options.dart';
 import 'package:core/core.dart';
 import 'package:utils/utils.dart';
@@ -19,25 +18,34 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => AuthRepository(),
-      child: BlocProvider(
-        create: (context) => AuthBloc(
-          authRepository: RepositoryProvider.of<AuthRepository>(context),
-        ),
-        child: MaterialApp(
-          home: StreamBuilder<User?>(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                const Dashboard();
-              }
-              return MaterialApp(
-                title: 'Udangku',
-                theme: ThemeData().copyWith(colorScheme: kColorScheme),
-                home: const Splash(),
-              );
-            },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => AuthBloc(
+            authRepository: AuthRepository(),
+          ),
+        )
+      ],
+      child: RepositoryProvider(
+        create: (context) => AuthRepository(),
+        child: BlocProvider(
+          create: (context) => AuthBloc(
+            authRepository: RepositoryProvider.of<AuthRepository>(context),
+          ),
+          child: MaterialApp(
+            home: StreamBuilder<User?>(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  const Dashboard();
+                }
+                return MaterialApp(
+                  title: 'Udangku',
+                  theme: ThemeData().copyWith(colorScheme: kColorScheme),
+                  home: const Splash(),
+                );
+              },
+            ),
           ),
         ),
       ),
