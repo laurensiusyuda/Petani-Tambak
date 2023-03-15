@@ -1,6 +1,5 @@
 import 'package:auth/auth.dart';
 import 'package:auth/presentasion/bloc/auth_bloc.dart';
-import 'package:auth/presentasion/bloc/auth_event.dart';
 import 'package:auth/presentasion/bloc/auth_state.dart';
 import 'package:core/presentasion/widget/build_activity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
