@@ -19,7 +19,7 @@ class Dashboard extends StatelessWidget {
     return Scaffold(
       backgroundColor: kMainColor,
       appBar: AppBar(
-        backgroundColor: kSecondaryColor,
+        backgroundColor: kMainColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -80,25 +80,57 @@ class Dashboard extends StatelessWidget {
         },
 
         // jika login
-        child: SingleChildScrollView(
-          child: Container(
-            margin:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const BuildDashboard(),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ),
-              ],
+        child: GradientBackground(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              kMainColor.withOpacity(0.3),
+              kMainColor.withOpacity(0.62),
+            ],
+          ),
+          child: SingleChildScrollView(
+            child: Container(
+              margin:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const BuildDashboard(),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class GradientBackground extends StatelessWidget {
+  const GradientBackground(
+      {Key? key, required this.gradient, required this.child})
+      : super(key: key);
+  final Gradient gradient;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            gradient: gradient,
+          ),
+        ),
+        child,
+      ],
     );
   }
 }
