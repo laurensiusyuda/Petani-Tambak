@@ -51,7 +51,7 @@ class _BuildDashboardState extends State<BuildDashboard> {
                           style: GoogleFonts.lato(
                             textStyle: const TextStyle(
                               fontSize: 15,
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -64,7 +64,7 @@ class _BuildDashboardState extends State<BuildDashboard> {
                     style: GoogleFonts.lato(
                       textStyle: const TextStyle(
                         fontSize: 15,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -88,7 +88,7 @@ Flexible timeNow() {
         style: GoogleFonts.lato(
           textStyle: const TextStyle(
             fontSize: 15,
-            color: Colors.white,
+            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -101,7 +101,7 @@ Flexible timeNow() {
         style: GoogleFonts.lato(
           textStyle: const TextStyle(
             fontSize: 15,
-            color: Colors.white,
+            color: Colors.black,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -114,7 +114,7 @@ Flexible timeNow() {
         style: GoogleFonts.lato(
           textStyle: const TextStyle(
             fontSize: 15,
-            color: Colors.white,
+            color: Colors.black,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -128,7 +128,7 @@ Flexible timeNow() {
         style: GoogleFonts.lato(
           textStyle: const TextStyle(
             fontSize: 15,
-            color: Colors.white,
+            color: Colors.black,
             fontWeight: FontWeight.w500,
           ),
         ),
