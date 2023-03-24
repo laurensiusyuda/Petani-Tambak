@@ -21,6 +21,7 @@ dependencies:
   introduction_screen: ^3.1.4
   easy_splash_screen: ^1.0.4
   shared_preferences: ^2.0.17
+  flutter_svg: ^2.0.4
 
   # google fonts
   google_fonts: ^3.0.1

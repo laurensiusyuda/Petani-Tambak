@@ -1,6 +1,7 @@
 import 'package:core/presentasion/widget/flexible_time.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:utils/utils.dart';
 
@@ -69,8 +70,14 @@ class _BuildDashboardState extends State<BuildDashboard> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
+            ),
+          ),
+          Expanded(
+            child: SvgPicture.asset(
+              'asset/dashboard.svg',
+              width: 140,
             ),
           ),
         ],

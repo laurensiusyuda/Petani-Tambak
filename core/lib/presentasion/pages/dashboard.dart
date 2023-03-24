@@ -87,7 +87,17 @@ class Dashboard extends StatelessWidget {
               children: [
                 const BuildDashboard(),
                 const SizedBox(
-                  height: 30,
+                  height: 35,
+                ),
+                Text(
+                  'Data Hasil Monitoring',
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
