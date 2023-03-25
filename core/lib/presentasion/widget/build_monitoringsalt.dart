@@ -2,8 +2,8 @@ import 'package:utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BuildMonitoringSuhu extends StatelessWidget {
-  const BuildMonitoringSuhu({super.key});
+class BuildMonitoringSalinitas extends StatelessWidget {
+  const BuildMonitoringSalinitas({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class BuildMonitoringSuhu extends StatelessWidget {
                 child: SizedBox.fromSize(
                   size: const Size.fromRadius(30),
                   child: Image.asset(
-                    'asset/thermometer.png',
+                    'asset/salt.png',
                   ),
                 ),
               ),
@@ -46,7 +46,7 @@ class BuildMonitoringSuhu extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      'Suhu',
+                      'Salinitas',
                       style: GoogleFonts.lato(
                         fontSize: 15,
                         color: Colors.black,
