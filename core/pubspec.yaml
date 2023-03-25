@@ -15,6 +15,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   firebase_storage: ^11.0.10
   cached_network_image: ^3.1.0
+  readmore: ^2.1.0
 
   # introduction and splash screen
   flutter_onboarding_slider: ^1.0.8

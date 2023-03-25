@@ -2,6 +2,7 @@ import 'package:auth/auth.dart';
 import 'package:auth/presentasion/bloc/auth_bloc.dart';
 import 'package:auth/presentasion/bloc/auth_state.dart';
 import 'package:core/presentasion/widget/build_activity.dart';
+import 'package:core/presentasion/widget/build_monitoringsuhu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,9 +86,19 @@ class Dashboard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  'Selamat Datang',
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
                 const BuildDashboard(),
                 const SizedBox(
-                  height: 35,
+                  height: 20,
                 ),
                 Text(
                   'Data Hasil Monitoring',
@@ -102,6 +113,18 @@ class Dashboard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ListView(
+                  shrinkWrap: true,
+                  controller: ScrollController(keepScrollOffset: true),
+                  children: const [
+                    BuildMonitoringSuhu(),
+                    BuildMonitoringSuhu(),
+                    BuildMonitoringSuhu(),
+                  ],
+                )
               ],
             ),
           ),

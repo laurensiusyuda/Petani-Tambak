@@ -18,34 +18,27 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => AuthBloc(
-            authRepository: AuthRepository(),
-          ),
-        )
-      ],
-      child: RepositoryProvider(
-        create: (context) => AuthRepository(),
-        child: BlocProvider(
-          create: (context) => AuthBloc(
-            authRepository: RepositoryProvider.of<AuthRepository>(context),
-          ),
-          child: MaterialApp(
-            home: StreamBuilder<User?>(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  const Dashboard();
-                }
-                return MaterialApp(
-                  title: 'Udangku',
-                  theme: ThemeData().copyWith(colorScheme: kColorScheme),
-                  home: const Splash(),
-                );
-              },
-            ),
+    return RepositoryProvider(
+      create: (context) => AuthRepository(),
+      child: BlocProvider(
+        create: (context) => AuthBloc(
+          authRepository: RepositoryProvider.of<AuthRepository>(context),
+        ),
+        child: MaterialApp(
+          home: StreamBuilder<User?>(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              // If the snapshot has user data, then they're already signed in. So Navigating to the Dashboard.
+              if (snapshot.hasData) {
+                const Dashboard();
+              }
+              // Otherwise, they're not signed in. Show the sign in page.
+              return MaterialApp(
+                title: 'Udangku',
+                theme: ThemeData().copyWith(colorScheme: kColorScheme),
+                home: const Splash(),
+              );
+            },
           ),
         ),
       ),

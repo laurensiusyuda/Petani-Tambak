@@ -17,7 +17,7 @@ class _BuildDashboardState extends State<BuildDashboard> {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
     return Container(
-      margin: const EdgeInsets.only(top: 30),
+      margin: const EdgeInsets.only(top: 20),
       decoration: BoxDecoration(
         color: kSecondaryColor,
         borderRadius: BorderRadius.circular(20.0),
