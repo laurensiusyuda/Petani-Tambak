@@ -123,7 +123,6 @@ class Dashboard extends StatelessWidget {
                   children: const [
                     BuildMonitoringSuhu(),
                     BuildMonitoringSalinitas(),
-                    BuildMonitoringSuhu(),
                   ],
                 )
               ],

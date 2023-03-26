@@ -53,6 +53,14 @@ class BuildMonitoringSuhu extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Text(
+                      'Kadar Suhu ',
+                      style: GoogleFonts.lato(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
               ),
