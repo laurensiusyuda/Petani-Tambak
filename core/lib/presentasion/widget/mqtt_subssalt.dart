@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+// ignore_for_file: avoid_print
+// ignore_for_file: library_private_types_in_public_api
 
 class MqttDataDisplay extends StatefulWidget {
+  const MqttDataDisplay({super.key});
+
   @override
   _MqttDataDisplayState createState() => _MqttDataDisplayState();
 }
@@ -54,7 +58,7 @@ class _MqttDataDisplayState extends State<MqttDataDisplay> {
     return Center(
       child: Text(
         'MQTT Message: $mqttMsg',
-        style: TextStyle(fontSize: 24.0),
+        style: const TextStyle(fontSize: 24.0),
       ),
     );
   }
