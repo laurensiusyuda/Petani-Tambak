@@ -88,7 +88,7 @@ class Dashboard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Selamat Datang',
+                  'Selamat Datang, ${user.displayName}',
                   style: GoogleFonts.lato(
                     textStyle: const TextStyle(
                       fontSize: 20,

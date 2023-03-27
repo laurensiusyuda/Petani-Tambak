@@ -14,6 +14,7 @@ class MqttDataDisplay extends StatefulWidget {
 class _MqttDataDisplayState extends State<MqttDataDisplay> {
   MqttServerClient? client;
   String? mqttMsg = '';
+  String? lastMqttMsg;
 
   @override
   void initState() {
@@ -36,6 +37,8 @@ class _MqttDataDisplayState extends State<MqttDataDisplay> {
         final String message = MqttPublishPayload.bytesToStringAsString(
             receivedMessage.payload.message);
         setState(() {
+          lastMqttMsg = mqttMsg;
+
           mqttMsg = message;
         });
       });
@@ -56,10 +59,7 @@ class _MqttDataDisplayState extends State<MqttDataDisplay> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'MQTT Message: $mqttMsg',
-        style: const TextStyle(fontSize: 24.0),
-      ),
+      child: mqttMsg != null ? Text('MQTT message: $mqttMsg') : Container(),
     );
   }
 }
