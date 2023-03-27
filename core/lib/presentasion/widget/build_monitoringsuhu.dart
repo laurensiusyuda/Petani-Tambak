@@ -1,10 +1,12 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
-import 'package:core/presentasion/widget/mqtt_subssuhu.dart';
 // ignore_for_file: avoid_print
+// ignore_for_file: unused_local_variable
 
 class BuildMonitoringSuhu extends StatefulWidget {
   const BuildMonitoringSuhu({super.key});
@@ -17,6 +19,7 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
   String? mqttMsg = '';
   String? lastMqttMsg;
 
+  // membuat fungsi koneski menuju mqtt
   void connect() async {
     client = MqttServerClient.withPort(
         'broker.mqtt-dashboard.com', 'myClientIdentifier', 1883);
@@ -35,7 +38,6 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
         final String message = MqttPublishPayload.bytesToStringAsString(
             receivedMessage.payload.message);
         setState(() {
-          // menerima data last mqtt  yang tersambung
           lastMqttMsg = mqttMsg;
           mqttMsg = message;
         });
@@ -62,6 +64,7 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
 
   @override
   Widget build(BuildContext context) {
+    double suhu = double.tryParse(mqttMsg ?? '') ?? 0.0;
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, '');
@@ -81,7 +84,16 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: kMainColor,
-                  border: Border.all(color: kGreenColor, width: 2.0),
+                  border: Border.all(
+                    color: suhu != null
+                        ? suhu > 30
+                            ? kRedColor
+                            : suhu >= 25 && suhu <= 29
+                                ? kGreenColor
+                                : kYellowColor
+                        : kYellowColor,
+                    width: 2.0,
+                  ),
                 ),
                 child: SizedBox.fromSize(
                   size: const Size.fromRadius(30),
@@ -107,6 +119,36 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    Container(
+                      child: mqttMsg != null
+                          ? Text(
+                              'Data Suhu: $suhu',
+                              style: GoogleFonts.lato(
+                                fontSize: 15,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          : Container(
+                              child: lastMqttMsg != null
+                                  ? Text(
+                                      'Data Suhu: $suhu',
+                                      style: GoogleFonts.lato(
+                                        fontSize: 15,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  : Text(
+                                      'Data Suhu : 27\u00b0',
+                                      style: GoogleFonts.lato(
+                                        fontSize: 15,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                            ),
                     ),
                   ],
                 ),
