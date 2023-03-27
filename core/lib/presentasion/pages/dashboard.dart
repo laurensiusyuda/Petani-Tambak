@@ -1,4 +1,5 @@
 import 'package:auth/auth.dart';
+import 'package:core/presentasion/widget/buildindicator.dart';
 import 'package:utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -99,7 +100,16 @@ class Dashboard extends StatelessWidget {
                 ),
                 const BuildDashboard(),
                 const SizedBox(
-                  height: 20,
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    BuildIndicator(),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
                 ),
                 Text(
                   'Data Hasil Monitoring',
@@ -111,11 +121,8 @@ class Dashboard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 ListView(
                   shrinkWrap: true,

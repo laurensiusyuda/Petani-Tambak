@@ -64,7 +64,7 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
 
   @override
   Widget build(BuildContext context) {
-    double suhu = double.tryParse(mqttMsg ?? '') ?? 0.0;
+    int suhu = int.tryParse(mqttMsg ?? '') ?? 0;
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, '');
@@ -86,13 +86,13 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
                   color: kMainColor,
                   border: Border.all(
                     color: suhu != null
-                        ? suhu > 30
+                        ? suhu >= 30
                             ? kRedColor
                             : suhu >= 25 && suhu <= 29
                                 ? kGreenColor
                                 : kYellowColor
                         : kYellowColor,
-                    width: 2.0,
+                    width: 4.0,
                   ),
                 ),
                 child: SizedBox.fromSize(
@@ -130,24 +130,13 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
                                 fontWeight: FontWeight.bold,
                               ),
                             )
-                          : Container(
-                              child: lastMqttMsg != null
-                                  ? Text(
-                                      'Data Suhu: $suhu',
-                                      style: GoogleFonts.lato(
-                                        fontSize: 15,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  : Text(
-                                      'Data Suhu : 27\u00b0',
-                                      style: GoogleFonts.lato(
-                                        fontSize: 15,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
+                          : Text(
+                              'Data Suhu : 27\u00b0',
+                              style: GoogleFonts.lato(
+                                fontSize: 15,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                     ),
                   ],
