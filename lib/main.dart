@@ -28,11 +28,9 @@ class MyApp extends StatelessWidget {
           home: StreamBuilder<User?>(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
-              // If the snapshot has user data, then they're already signed in. So Navigating to the Dashboard.
               if (snapshot.hasData) {
                 const Dashboard();
               }
-              // Otherwise, they're not signed in. Show the sign in page.
               return MaterialApp(
                 title: 'Udangku',
                 theme: ThemeData().copyWith(colorScheme: kColorScheme),
