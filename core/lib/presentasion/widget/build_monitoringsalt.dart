@@ -32,7 +32,7 @@ class _BuildMonitoringSalinitasState extends State<BuildMonitoringSalinitas> {
     client!.onConnected = onConnected;
     try {
       await client!.connect();
-      client!.subscribe('topicName/temperature', MqttQos.atMostOnce);
+      client!.subscribe('topicName/salt', MqttQos.atMostOnce);
       client!.updates!.listen((List<MqttReceivedMessage<MqttMessage>> c) {
         final MqttPublishMessage receivedMessage =
             c[0].payload as MqttPublishMessage;
@@ -119,24 +119,13 @@ class _BuildMonitoringSalinitasState extends State<BuildMonitoringSalinitas> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Container(
-                      child: mqttMsg != null
-                          ? Text(
-                              'Data Suhu: $salinitas',
-                              style: GoogleFonts.lato(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                          : Text(
-                              'Data Suhu : 27\u00b0',
-                              style: GoogleFonts.lato(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                    Text(
+                      'Data Saliniats: $salinitas',
+                      style: GoogleFonts.lato(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),

@@ -120,24 +120,13 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Container(
-                      child: mqttMsg != null
-                          ? Text(
-                              'Data Suhu: $suhu',
-                              style: GoogleFonts.lato(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                          : Text(
-                              'Data Suhu : 27\u00b0',
-                              style: GoogleFonts.lato(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                    Text(
+                      'Data Saliniats: $suhu\u00b0',
+                      style: GoogleFonts.lato(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
