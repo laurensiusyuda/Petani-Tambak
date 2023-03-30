@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+
 // ignore_for_file: avoid_print
 // ignore_for_file: unused_local_variable
 
@@ -19,7 +20,6 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
   String? mqttMsg = '';
   String? lastMqttMsg;
 
-  // membuat fungsi koneski menuju mqtt
   void connect() async {
     client = MqttServerClient.withPort(
         'broker.mqtt-dashboard.com', 'myClientIdentifier', 1883);
