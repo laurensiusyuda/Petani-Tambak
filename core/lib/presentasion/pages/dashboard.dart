@@ -8,8 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:auth/presentasion/bloc/auth_bloc.dart';
 import 'package:auth/presentasion/bloc/auth_state.dart';
 import 'package:core/presentasion/widget/build_activity.dart';
-import 'package:core/presentasion/widget/build_monitoringsalt.dart';
-import 'package:core/presentasion/widget/build_monitoringsuhu.dart';
+import 'package:core/presentasion/widget/salt_widget.dart';
+import 'package:core/presentasion/widget/suhu_widget.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
