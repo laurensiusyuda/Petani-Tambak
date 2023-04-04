@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'firebase_options.dart';
 import 'package:core/core.dart';
 import 'package:utils/utils.dart';
@@ -25,20 +26,39 @@ class MyApp extends StatelessWidget {
           authRepository: RepositoryProvider.of<AuthRepository>(context),
         ),
         child: MaterialApp(
-          home: StreamBuilder<User?>(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                const Dashboard();
+            home: StreamBuilder<User?>(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  const Dashboard();
+                }
+                return MaterialApp(
+                  title: 'Udangku',
+                  theme: ThemeData().copyWith(colorScheme: kColorScheme),
+                  home: const SplashScreen(),
+                );
+              },
+            ),
+            onGenerateRoute: (RouteSettings settings) {
+              switch (settings.name) {
+                case '/home':
+                  return MaterialPageRoute(builder: (_) => const Dashboard());
+                case LoginPage.routeName:
+                  return MaterialPageRoute(builder: (_) => const LoginPage());
+                case SignInPage.routeName:
+                  return MaterialPageRoute(builder: (_) => const SignInPage());
+                default:
+                  return MaterialPageRoute(
+                    builder: (_) {
+                      return const Scaffold(
+                        body: Center(
+                          child: Text('Page not Found'),
+                        ),
+                      );
+                    },
+                  );
               }
-              return MaterialApp(
-                title: 'Udangku',
-                theme: ThemeData().copyWith(colorScheme: kColorScheme),
-                home: const Splash(),
-              );
-            },
-          ),
-        ),
+            }),
       ),
     );
   }

@@ -14,6 +14,8 @@ import 'package:auth/presentasion/widget/password_field.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
+  static const routeName = 'signup';
+
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
@@ -137,11 +139,9 @@ class _SignInPageState extends State<SignInPage> {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                              Navigator.pushReplacement(
+                                              Navigator.pushNamed(
                                                 context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const LoginPage()),
+                                                LoginPage.routeName,
                                               );
                                             },
                                             child: Text(

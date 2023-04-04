@@ -19,8 +19,6 @@ dependencies:
   mqtt_client: ^9.8.1
   # introduction and splash screen
   flutter_onboarding_slider: ^1.0.8
-  introduction_screen: ^3.1.4
-  easy_splash_screen: ^1.0.4
   shared_preferences: ^2.0.17
   flutter_svg: ^2.0.4
 

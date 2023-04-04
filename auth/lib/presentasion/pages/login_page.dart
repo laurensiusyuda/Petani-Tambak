@@ -15,6 +15,7 @@ import 'package:auth/presentasion/widget/password_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+  static const routeName = 'login';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -139,12 +140,8 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                              Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const SignInPage()),
-                                              );
+                                              Navigator.pushNamed(context,
+                                                  SignInPage.routeName);
                                             },
                                             child: Text(
                                               'Daftar',

@@ -1,35 +1,39 @@
+import 'dart:async';
 import 'package:utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:core/presentasion/pages/onboard_page.dart';
 
-class Splash extends StatefulWidget {
-  const Splash({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
-  State<Splash> createState() => _SplashState();
+  State<SplashScreen> createState() => SplashScreenState();
 }
 
-class _SplashState extends State<Splash> {
+class SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => const OnBoardingPage()));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return EasySplashScreen(
-      logo: Image.asset(
-        'asset/Logo_OnBoard.png',
-      ),
+    return Scaffold(
       backgroundColor: kMainColor,
-      showLoader: true,
-      loadingText: Text(
-        "Harap Tunggu",
-        style: GoogleFonts.lato(
-          textStyle: const TextStyle(
-            color: Colors.white,
-          ),
-        ),
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Image.asset(
+            'assets/Logo_Udangku.png',
+            width: 150,
+            height: 150,
+          )
+        ],
       ),
-      navigator: const OnBoard(),
-      durationInSeconds: 5,
-      loaderColor: Colors.white,
     );
   }
 }
