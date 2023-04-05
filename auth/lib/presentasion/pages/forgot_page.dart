@@ -108,43 +108,6 @@ class _ForgotPageState extends State<ForgotPage> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Belum Punya Akun?',
-                                            style: GoogleFonts.lato(
-                                              textStyle: const TextStyle(
-                                                color: Colors.white54,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const SignInPage()),
-                                              );
-                                            },
-                                            child: Text(
-                                              'Daftar',
-                                              style: GoogleFonts.lato(
-                                                textStyle: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
                                   const SizedBox(
                                     height: 40,
                                   ),
