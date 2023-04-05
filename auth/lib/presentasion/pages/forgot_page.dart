@@ -1,14 +1,13 @@
+import 'package:core/core.dart';
+import 'package:utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:auth/presentasion/bloc/auth_bloc.dart';
 import 'package:auth/presentasion/bloc/auth_event.dart';
 import 'package:auth/presentasion/bloc/auth_state.dart';
-import 'package:auth/presentasion/pages/signup_page.dart';
-import 'package:core/core.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:utils/utils.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:auth/presentasion/widget/email_field.dart';
-import 'package:auth/presentasion/widget/button_login.dart';
+import 'package:auth/presentasion/widget/button_forgot.dart';
 
 class ForgotPage extends StatefulWidget {
   const ForgotPage({Key? key}) : super(key: key);
@@ -111,7 +110,7 @@ class _ForgotPageState extends State<ForgotPage> {
                                   const SizedBox(
                                     height: 40,
                                   ),
-                                  ButtonLogin(
+                                  ButtonForgot(
                                     elementsOpacity: _elementsOpacity,
                                     onAnimatinoEnd: () async {
                                       await Future.delayed(
