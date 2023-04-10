@@ -30,7 +30,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(UnAuthenticated());
       }
     });
-
     // When User Presses the Google Login Button, we will send the GoogleSignInRequest Event to the AuthBloc to handle it and emit the Authenticated State if the user is authenticated
     on<GoogleSignInRequested>((event, emit) async {
       emit(Loading());
