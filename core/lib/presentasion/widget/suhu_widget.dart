@@ -206,7 +206,7 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
                           ),
                         ),
                         Text(
-                          'Data Saliniats: $salinitas',
+                          'Data Saliniatas: $salinitas',
                           style: GoogleFonts.lato(
                             fontSize: 15,
                             color: Colors.black,
