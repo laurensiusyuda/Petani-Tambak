@@ -34,22 +34,22 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
     try {
       await client!.connect();
       client!.subscribe('topicName/temperature', MqttQos.atMostOnce);
-      client!.subscribe('topicName/temperature', MqttQos.atMostOnce);
+      client!.subscribe('topicName/salt', MqttQos.atMostOnce);
 
       client!.updates!.listen((List<MqttReceivedMessage<MqttMessage>> c) {
         final MqttPublishMessage receivedMessage =
             c[0].payload as MqttPublishMessage;
         final String message = MqttPublishPayload.bytesToStringAsString(
             receivedMessage.payload.message);
-        if (c[0].topic == 'topicName/salt') {
-          setState(() {
-            lastMqttSaltMsg = mqttSaltMsg;
-            mqttSaltMsg = message;
-          });
-        } else if (c[0].topic == 'topicName/temperature') {
+        if (c[0].topic == 'topicName/temperature') {
           setState(() {
             lastMqttTempMsg = mqttTempMsg;
             mqttTempMsg = message;
+          });
+        } else if (c[0].topic == 'topicName/salt') {
+          setState(() {
+            lastMqttSaltMsg = mqttSaltMsg;
+            mqttSaltMsg = message;
           });
         }
       });
