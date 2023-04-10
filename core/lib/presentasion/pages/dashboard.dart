@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:auth/presentasion/bloc/auth_bloc.dart';
 import 'package:auth/presentasion/bloc/auth_state.dart';
-import 'package:core/presentasion/widget/salt_widget.dart';
 import 'package:core/presentasion/widget/suhu_widget.dart';
 import 'package:core/presentasion/widget/buildindicator.dart';
 import 'package:core/presentasion/widget/build_activity.dart';
@@ -124,14 +123,7 @@ class Dashboard extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                ListView(
-                  shrinkWrap: true,
-                  controller: ScrollController(keepScrollOffset: true),
-                  children: const [
-                    BuildMonitoringSuhu(),
-                    BuildMonitoringSalinitas(),
-                  ],
-                )
+                BuildMonitoring()
               ],
             ),
           ),

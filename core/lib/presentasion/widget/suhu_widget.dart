@@ -1,4 +1,3 @@
-
 // ignore_for_file: unnecessary_null_comparison
 
 import 'package:utils/utils.dart';
@@ -10,16 +9,18 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 // ignore_for_file: avoid_print
 // ignore_for_file: unused_local_variable
 
-class BuildMonitoringSuhu extends StatefulWidget {
-  const BuildMonitoringSuhu({super.key});
+class BuildMonitoring extends StatefulWidget {
+  const BuildMonitoring({super.key});
   @override
-  State<BuildMonitoringSuhu> createState() => _BuildMonitoringSuhuState();
+  State<BuildMonitoring> createState() => _BuildMonitoringState();
 }
 
-class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
+class _BuildMonitoringState extends State<BuildMonitoring> {
   MqttServerClient? client;
-  String? mqttMsg = '';
-  String? lastMqttMsg;
+  String? mqttSaltMsg = '';
+  String? mqttTempMsg = '';
+  String? lastMqttSaltMsg;
+  String? lastMqttTempMsg;
 
   void connect() async {
     client = MqttServerClient.withPort(
@@ -33,15 +34,24 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
     try {
       await client!.connect();
       client!.subscribe('topicName/temperature', MqttQos.atMostOnce);
+      client!.subscribe('topicName/temperature', MqttQos.atMostOnce);
+
       client!.updates!.listen((List<MqttReceivedMessage<MqttMessage>> c) {
         final MqttPublishMessage receivedMessage =
             c[0].payload as MqttPublishMessage;
         final String message = MqttPublishPayload.bytesToStringAsString(
             receivedMessage.payload.message);
-        setState(() {
-          lastMqttMsg = mqttMsg;
-          mqttMsg = message;
-        });
+        if (c[0].topic == 'topicName/salt') {
+          setState(() {
+            lastMqttSaltMsg = mqttSaltMsg;
+            mqttSaltMsg = message;
+          });
+        } else if (c[0].topic == 'topicName/temperature') {
+          setState(() {
+            lastMqttTempMsg = mqttTempMsg;
+            mqttTempMsg = message;
+          });
+        }
       });
     } on Exception catch (e) {
       print('Exception: $e');
@@ -65,77 +75,153 @@ class _BuildMonitoringSuhuState extends State<BuildMonitoringSuhu> {
 
   @override
   Widget build(BuildContext context) {
-    int suhu = int.tryParse(mqttMsg ?? '') ?? 0;
-    return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, '');
-      },
-      child: Card(
-        color: kSecondaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: kMainColor,
-                  border: Border.all(
-                    color: suhu != null
-                        ? suhu >= 30
-                            ? kRedColor
-                            : suhu >= 25 && suhu <= 29
-                                ? kGreenColor
-                                : kYellowColor
-                        : kYellowColor,
-                    width: 4.0,
-                  ),
-                ),
-                child: SizedBox.fromSize(
-                  size: const Size.fromRadius(30),
-                  child: Image.asset(
-                    'asset/thermometer.png',
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 25,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Suhu',
-                      style: GoogleFonts.lato(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+    int suhu = int.tryParse(mqttTempMsg ?? '') ?? 0;
+    int salinitas = int.tryParse(mqttSaltMsg ?? '') ?? 0;
+
+    return ListView(
+      shrinkWrap: true,
+      controller: ScrollController(keepScrollOffset: true),
+      children: [
+        InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, '');
+          },
+          child: Card(
+            color: kSecondaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: kMainColor,
+                      border: Border.all(
+                        color: suhu != null
+                            ? suhu >= 30
+                                ? kRedColor
+                                : suhu >= 25 && suhu <= 29
+                                    ? kGreenColor
+                                    : kYellowColor
+                            : kYellowColor,
+                        width: 4.0,
                       ),
                     ),
-                    Text(
-                      'Data Saliniats: $suhu\u00b0',
-                      style: GoogleFonts.lato(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                    child: SizedBox.fromSize(
+                      size: const Size.fromRadius(30),
+                      child: Image.asset(
+                        'asset/thermometer.png',
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Suhu',
+                          style: GoogleFonts.lato(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Data Saliniats: $suhu\u00b0',
+                          style: GoogleFonts.lato(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
-      ),
+        InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, '');
+          },
+          child: Card(
+            color: kSecondaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: salinitas != null
+                          ? salinitas >= 30
+                              ? kRedColor
+                              : salinitas >= 25 && salinitas <= 29
+                                  ? kGreenColor
+                                  : kYellowColor
+                          : kYellowColor,
+                      border: Border.all(color: kGreenColor, width: 2.0),
+                    ),
+                    child: SizedBox.fromSize(
+                      size: const Size.fromRadius(30),
+                      child: Image.asset(
+                        'asset/salt.png',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Salinitas',
+                          style: GoogleFonts.lato(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Data Saliniats: $salinitas',
+                          style: GoogleFonts.lato(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
