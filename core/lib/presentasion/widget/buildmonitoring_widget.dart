@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'package:core/presentasion/pages/detailpage.dart';
 import 'package:utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
@@ -84,7 +85,7 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
       children: [
         InkWell(
           onTap: () {
-            Navigator.pushNamed(context, '');
+            Navigator.pushNamed(context, DetailPage.routeName);
           },
           child: Card(
             color: kSecondaryColor,
@@ -155,7 +156,7 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
         ),
         InkWell(
           onTap: () {
-            Navigator.pushNamed(context, '');
+            Navigator.pushNamed(context, DetailPage.routeName);
           },
           child: Card(
             color: kSecondaryColor,

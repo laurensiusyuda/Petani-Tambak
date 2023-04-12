@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:auth/presentasion/bloc/auth_bloc.dart';
+import 'package:auth/presentasion/bloc/auth_event.dart';
+import 'package:core/presentasion/pages/detailpage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:core/core.dart';
 import 'package:readmore/readmore.dart';
+import 'package:flutter/material.dart';
 import 'package:utils/utils.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
-
   static const routeName = '/profile';
-
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -32,7 +33,9 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<AuthBloc>().add(SignOutRequested());
+            },
             icon: const Icon(
               Icons.logout,
               color: Colors.white,

@@ -1,3 +1,9 @@
+import 'package:auth/presentasion/bloc/auth_bloc.dart';
+import 'package:auth/presentasion/bloc/auth_event.dart';
+import 'package:auth/presentasion/bloc/auth_state.dart';
+import 'package:auth/presentasion/pages/login_page.dart';
+import 'package:core/presentasion/pages/profilepage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,70 +49,94 @@ class Dashboard extends StatelessWidget {
         ),
         actions: <Widget>[
           InkWell(
-              onTap: () {},
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(40),
-                child: user.photoURL != null
-                    ? Image.network(
-                        "${user.photoURL}",
-                        height: 50,
-                        width: 50,
-                      )
-                    : IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.account_circle,
-                          size: 30.0,
-                          color: Colors.white,
-                        ),
+            onTap: () {},
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(40),
+              child: user.photoURL != null
+                  ? GestureDetector(
+                      onTap: () {
+                        context.read<AuthBloc>().add(SignOutRequested());
+                      },
+                      child: Stack(
+                        children: [
+                          Image.network(
+                            "${user.photoURL}",
+                            height: 50,
+                            width: 50,
+                          ),
+                        ],
                       ),
-              ))
+                    )
+                  : IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, ProfilePage.routeName);
+                      },
+                      icon: const Icon(
+                        Icons.account_circle,
+                        size: 30.0,
+                        color: Colors.white,
+                      ),
+                    ),
+            ),
+          ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Selamat Datang, ${user.displayName}',
-                style: GoogleFonts.lato(
-                  textStyle: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is UnAuthenticated) {
+            // Navigate to the sign in screen when the user Signs Out
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => LoginPage()),
+              (route) => false,
+            );
+          }
+        },
+        child: SingleChildScrollView(
+          child: Container(
+            margin:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Selamat Datang, ${user.displayName}',
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              const BuildDashboard(),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  BuildIndicator(),
-                ],
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                'Data Hasil Monitoring',
-                style: GoogleFonts.lato(
-                  textStyle: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+                const BuildDashboard(),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    BuildIndicator(),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Data Hasil Monitoring',
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              BuildMonitoring()
-            ],
+                const SizedBox(
+                  height: 15,
+                ),
+                BuildMonitoring()
+              ],
+            ),
           ),
         ),
       ),

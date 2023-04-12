@@ -1,4 +1,6 @@
 import 'package:auth/auth.dart';
+import 'package:core/presentasion/pages/detailpage.dart';
+import 'package:core/presentasion/pages/profilepage.dart';
 import 'firebase_options.dart';
 import 'package:core/core.dart';
 import 'package:utils/utils.dart';
@@ -24,6 +26,10 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case '/home':
             return MaterialPageRoute(builder: (_) => const Dashboard());
+          case DetailPage.routeName:
+            return MaterialPageRoute(builder: (_) => const DetailPage());
+          case ProfilePage.routeName:
+            return MaterialPageRoute(builder: (_) => const ProfilePage());
           case LoginPage.routeName:
             return MaterialPageRoute(builder: (_) => const LoginPage());
           case SignInPage.routeName:

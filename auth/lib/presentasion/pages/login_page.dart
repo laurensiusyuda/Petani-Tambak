@@ -140,8 +140,13 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                              Navigator.pushNamed(context,
-                                                  SignInPage.routeName);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const SignInPage(),
+                                                ),
+                                              );
                                             },
                                             child: Text(
                                               'Daftar',
