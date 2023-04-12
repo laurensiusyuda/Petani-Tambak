@@ -2,7 +2,7 @@ import 'package:utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:core/presentasion/widget/suhu_widget.dart';
+import 'package:core/presentasion/widget/buildmonitoring_widget.dart';
 import 'package:core/presentasion/widget/buildindicator.dart';
 import 'package:core/presentasion/widget/build_activity.dart';
 // ignore_for_file: prefer_const_constructors
