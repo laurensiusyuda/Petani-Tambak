@@ -85,7 +85,12 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
       children: [
         InkWell(
           onTap: () {
-            Navigator.pushNamed(context, DetailPage.routeName);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DetailPage(),
+              ),
+            );
           },
           child: Card(
             color: kSecondaryColor,
@@ -156,7 +161,12 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
         ),
         InkWell(
           onTap: () {
-            Navigator.pushNamed(context, DetailPage.routeName);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DetailPage(),
+              ),
+            );
           },
           child: Card(
             color: kSecondaryColor,

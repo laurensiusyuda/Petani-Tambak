@@ -55,7 +55,12 @@ class Dashboard extends StatelessWidget {
               child: user.photoURL != null
                   ? GestureDetector(
                       onTap: () {
-                        context.read<AuthBloc>().add(SignOutRequested());
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProfilePage(),
+                          ),
+                        );
                       },
                       child: Stack(
                         children: [
@@ -69,7 +74,12 @@ class Dashboard extends StatelessWidget {
                     )
                   : IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, ProfilePage.routeName);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProfilePage(),
+                          ),
+                        );
                       },
                       icon: const Icon(
                         Icons.account_circle,
