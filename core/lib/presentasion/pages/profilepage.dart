@@ -9,7 +9,7 @@ import 'package:utils/utils.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
-  static const routeName = '/profile';
+  static const routeName = '/profilepage';
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }

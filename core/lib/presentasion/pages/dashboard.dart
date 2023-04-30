@@ -1,5 +1,4 @@
 import 'package:auth/presentasion/bloc/auth_bloc.dart';
-import 'package:auth/presentasion/bloc/auth_event.dart';
 import 'package:auth/presentasion/bloc/auth_state.dart';
 import 'package:auth/presentasion/pages/login_page.dart';
 import 'package:core/presentasion/pages/profilepage.dart';
@@ -14,6 +13,7 @@ import 'package:core/presentasion/widget/build_activity.dart';
 // ignore_for_file: prefer_const_constructors
 
 class Dashboard extends StatelessWidget {
+  static const routeName = '/dashboard';
   const Dashboard({Key? key}) : super(key: key);
 
   @override

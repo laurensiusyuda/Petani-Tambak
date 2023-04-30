@@ -3,7 +3,7 @@ import 'package:readmore/readmore.dart';
 import 'package:utils/utils.dart';
 
 class DetailPage extends StatefulWidget {
-  static const routeName = '/detail';
+  static const routeName = '/detailpage';
 
   const DetailPage({super.key});
   @override
