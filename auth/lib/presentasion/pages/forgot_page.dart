@@ -11,6 +11,7 @@ import 'package:auth/presentasion/widget/button_forgot.dart';
 
 class ForgotPage extends StatefulWidget {
   const ForgotPage({Key? key}) : super(key: key);
+  static const routeName = 'forgot';
 
   @override
   State<ForgotPage> createState() => _ForgotPageState();

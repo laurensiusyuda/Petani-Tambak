@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         DetailPage.routeName: (context) => const DetailPage(),
         LoginPage.routeName: (context) => const LoginPage(),
         SignInPage.routeName: (context) => const SignInPage(),
+        ForgotPage.routeName: (context) => const ForgotPage(),
       },
     );
   }
