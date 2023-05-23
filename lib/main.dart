@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData().copyWith(colorScheme: kColorScheme),
       home: const SplashScreen(),
       navigatorKey: navigatorKey,
-      initialRoute: Dashboard.routeName,
+      initialRoute: SplashScreen.routeName,
       routes: {
         Dashboard.routeName: (context) => const Dashboard(),
         ProfilePage.routeName: (context) => const ProfilePage(),

@@ -47,7 +47,7 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
             lastMqttTempMsg = mqttTempMsg;
             mqttTempMsg = message;
           });
-        } else if (c[0].topic == 'topicName/salt') {
+        } else if (c[0].topic == 'topicNmae/salt') {
           setState(() {
             lastMqttSaltMsg = mqttSaltMsg;
             mqttSaltMsg = message;
