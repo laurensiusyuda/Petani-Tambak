@@ -20,8 +20,10 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
   MqttServerClient? client;
   String? mqttSaltMsg = '';
   String? mqttTempMsg = '';
+  String? mqttpHMsg = '';
   String? lastMqttSaltMsg;
   String? lastMqttTempMsg;
+  String? lastMqttpHMsg;
 
   void connect() async {
     client = MqttServerClient.withPort(
@@ -36,6 +38,7 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
       await client!.connect();
       client!.subscribe('topicName/temperature', MqttQos.atMostOnce);
       client!.subscribe('topicName/salt', MqttQos.atMostOnce);
+      client!.subscribe('topicName/ph', MqttQos.atMostOnce);
 
       client!.updates!.listen((List<MqttReceivedMessage<MqttMessage>> c) {
         final MqttPublishMessage receivedMessage =
@@ -51,6 +54,11 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
           setState(() {
             lastMqttSaltMsg = mqttSaltMsg;
             mqttSaltMsg = message;
+          });
+        } else if (c[0].topic == 'topicName/ph') {
+          setState(() {
+            lastMqttpHMsg = mqttpHMsg;
+            mqttpHMsg = message;
           });
         }
       });
@@ -78,6 +86,7 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
   Widget build(BuildContext context) {
     int suhu = int.tryParse(mqttTempMsg ?? '') ?? 0;
     int salinitas = int.tryParse(mqttSaltMsg ?? '') ?? 0;
+    int pH = int.tryParse(mqttpHMsg ?? '') ?? 0;
 
     return ListView(
       shrinkWrap: true,
@@ -185,7 +194,7 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
                       color: salinitas != null
                           ? salinitas >= 30
                               ? kRedColor
-                              : salinitas >= 25 && salinitas <= 29
+                              : salinitas >= 20 && salinitas <= 29
                                   ? kGreenColor
                                   : kYellowColor
                           : kYellowColor,
@@ -218,6 +227,79 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
                         ),
                         Text(
                           'Data Saliniatas: $salinitas',
+                          style: GoogleFonts.lato(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DetailPage(),
+              ),
+            );
+          },
+          child: Card(
+            color: kSecondaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: pH != null
+                          ? pH >= 9
+                              ? kRedColor
+                              : pH >= 6.5 && pH <= 8
+                                  ? kGreenColor
+                                  : kYellowColor
+                          : kYellowColor,
+                      border: Border.all(color: kGreenColor, width: 2.0),
+                    ),
+                    child: SizedBox.fromSize(
+                      size: const Size.fromRadius(30),
+                      child: Image.asset(
+                        'asset/salt.png',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'pH',
+                          style: GoogleFonts.lato(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Data pH: $pH',
                           style: GoogleFonts.lato(
                             fontSize: 15,
                             color: Colors.black,
