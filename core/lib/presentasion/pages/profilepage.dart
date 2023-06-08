@@ -1,12 +1,9 @@
 import 'package:auth/presentasion/bloc/auth_bloc.dart';
 import 'package:auth/presentasion/bloc/auth_event.dart';
-import 'package:core/presentasion/pages/detailpage.dart';
 import 'package:core/presentasion/widget/buildmonitoring_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:readmore/readmore.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/utils.dart';
 
@@ -94,7 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             const SizedBox(
-              height: 15,
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -103,15 +100,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   const BuildMonitoring(),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
-                  Text(
-                    'Hal Yang Perlu Dilakukan',
-                    style: GoogleFonts.lato(
-                      textStyle: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                  Center(
+                    child: Text(
+                      'Hal Yang Perlu Dilakukan',
+                      style: GoogleFonts.lato(
+                        textStyle: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),

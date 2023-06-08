@@ -1,18 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:readmore/readmore.dart';
 import 'package:utils/utils.dart';
 
-class DetailPage extends StatefulWidget {
-  const DetailPage({super.key});
+class Detailsalinitas extends StatefulWidget {
+  const Detailsalinitas({super.key});
   static const routeName = '/detailpage';
 
   @override
   DetailPageState createState() => DetailPageState();
 }
 
-class DetailPageState extends State<DetailPage> {
+class DetailPageState extends State<Detailsalinitas> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
@@ -55,7 +54,7 @@ class DetailPageState extends State<DetailPage> {
                     child: Column(
                       children: [
                         Text(
-                          'Suhu',
+                          'Salinitas',
                           style: GoogleFonts.lato(
                             textStyle: const TextStyle(
                               fontSize: 20,
@@ -95,7 +94,7 @@ class DetailPageState extends State<DetailPage> {
                                     ]),
                                 child: Center(
                                   child: Image.asset(
-                                    'asset/thermometer.png',
+                                    'asset/salt.png',
                                     width: 100,
                                   ),
                                 ),
@@ -104,7 +103,7 @@ class DetailPageState extends State<DetailPage> {
                                 height: 10,
                               ),
                               Text(
-                                'Suhu',
+                                'Salinitas = ',
                                 style: GoogleFonts.lato(
                                   textStyle: const TextStyle(
                                     fontSize: 20,
