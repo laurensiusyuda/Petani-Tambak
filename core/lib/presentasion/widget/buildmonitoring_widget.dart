@@ -276,7 +276,7 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
                     child: SizedBox.fromSize(
                       size: const Size.fromRadius(30),
                       child: Image.asset(
-                        'asset/salt.png',
+                        'asset/ph.png',
                       ),
                     ),
                   ),

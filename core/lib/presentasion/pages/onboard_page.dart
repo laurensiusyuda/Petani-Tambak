@@ -1,5 +1,7 @@
 import 'package:auth/data/service/authentication_service.dart';
 import 'package:auth/presentasion/bloc/auth_bloc.dart';
+import 'package:auth/presentasion/pages/login_page.dart';
+import 'package:auth/presentasion/pages/signup_page.dart';
 import 'package:core/presentasion/pages/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:utils/constant/constant.dart';
 
 class OnBoardPage extends StatelessWidget {
   const OnBoardPage({super.key});
+  static const routeName = 'on-board';
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,14 @@ class OnBoardPage extends StatelessWidget {
                           ),
                           //* mengarahkan menuju tombol Login
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginPage(),
+                                ),
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kButtonColor,
                               fixedSize: Size(
@@ -84,7 +94,14 @@ class OnBoardPage extends StatelessWidget {
                           ),
                           //* mengarahkan menuju tombol Daftar
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignInPage(),
+                                ),
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kButtonColor,
                               fixedSize: Size(

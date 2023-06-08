@@ -3,9 +3,9 @@ import 'package:readmore/readmore.dart';
 import 'package:utils/utils.dart';
 
 class DetailPage extends StatefulWidget {
-  static const routeName = '/detailpage';
-
   const DetailPage({super.key});
+  static const routeName = 'detailpage';
+
   @override
   DetailPageState createState() => DetailPageState();
 }
@@ -77,7 +77,7 @@ class DetailPageState extends State<DetailPage> {
                                           spreadRadius: 3.0)
                                     ]),
                                 child: Image.asset(
-                                  'assets/thermometer.png',
+                                  'asset/thermometer.png',
                                   width: 100,
                                 ),
                               ),

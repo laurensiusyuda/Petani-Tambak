@@ -8,6 +8,8 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
   google_sign_in: ^5.4.4
   font_awesome_flutter: ^10.3.0
   flutter_bloc: ^8.1.1
@@ -27,12 +29,12 @@ dependencies:
   # firebase
   firebase_core: ^2.5.0
   firebase_auth: ^4.2.5
-  utils:
-    path: ../utils
+
   auth:
     path: ../auth
-  flutter:
-    sdk: flutter
+
+  utils:
+    path: ../utils
 
 dev_dependencies:
   flutter_test:

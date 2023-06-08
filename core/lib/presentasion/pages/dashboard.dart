@@ -13,8 +13,8 @@ import 'package:core/presentasion/widget/build_activity.dart';
 // ignore_for_file: prefer_const_constructors
 
 class Dashboard extends StatelessWidget {
-  static const routeName = '/dashboard';
   const Dashboard({Key? key}) : super(key: key);
+  static const routeName = '/dashboard';
 
   @override
   Widget build(BuildContext context) {

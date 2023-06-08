@@ -21,15 +21,33 @@ class MyApp extends StatelessWidget {
       title: 'Udangku',
       theme: ThemeData().copyWith(colorScheme: kColorScheme),
       home: const SplashScreen(),
-      navigatorKey: navigatorKey,
-      initialRoute: SplashScreen.routeName,
-      routes: {
-        Dashboard.routeName: (context) => const Dashboard(),
-        ProfilePage.routeName: (context) => const ProfilePage(),
-        DetailPage.routeName: (context) => const DetailPage(),
-        LoginPage.routeName: (context) => const LoginPage(),
-        SignInPage.routeName: (context) => const SignInPage(),
-        ForgotPage.routeName: (context) => const ForgotPage(),
+      navigatorObservers: [routeObserver],
+      onGenerateRoute: (RouteSettings settings) {
+        switch (settings.name) {
+          case '/home':
+            return MaterialPageRoute(builder: (_) => const Dashboard());
+          case SplashScreen.routeName:
+            return MaterialPageRoute(builder: (_) => const SplashScreen());
+          case OnBoardPage.routeName:
+            return MaterialPageRoute(builder: (_) => const OnBoardPage());
+          case DetailPage.routeName:
+            return MaterialPageRoute(builder: (_) => const DetailPage());
+          case ProfilePage.routeName:
+            return MaterialPageRoute(builder: (_) => const ProfilePage());
+          case LoginPage.routeName:
+            return MaterialPageRoute(builder: (_) => const LoginPage());
+          case SignInPage.routeName:
+            return MaterialPageRoute(builder: (_) => const SignInPage());
+
+          default:
+            return MaterialPageRoute(builder: (_) {
+              return const Scaffold(
+                body: Center(
+                  child: Text('Page not Found'),
+                ),
+              );
+            });
+        }
       },
     );
   }

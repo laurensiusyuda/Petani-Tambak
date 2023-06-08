@@ -27,10 +27,11 @@ dependencies:
   # button google
   sign_in_button: ^3.1.0
 
-  utils:
-    path: ../utils
   core:
     path: ../core
+
+  utils:
+    path: ../utils
 
   flutter:
     sdk: flutter
