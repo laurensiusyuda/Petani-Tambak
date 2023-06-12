@@ -23,13 +23,16 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
   String? mqttSaltMsg = '';
   String? mqttTempMsg = '';
   String? mqttpHMsg = '';
-  String? lastMqttSaltMsg;
   String? lastMqttTempMsg;
+  String? lastMqttSaltMsg;
   String? lastMqttpHMsg;
 
   void connect() async {
     client = MqttServerClient.withPort(
-        'broker.mqtt-dashboard.com', 'myClientIdentifier', 1883);
+      'broker.mqtt-dashboard.com',
+      'myClientIdentifier',
+      1883,
+    );
     client!.logging(on: true);
     client!.keepAlivePeriod = 30;
     client!.autoReconnect = true;
@@ -51,8 +54,9 @@ class _BuildMonitoringState extends State<BuildMonitoring> {
           setState(() {
             lastMqttTempMsg = mqttTempMsg;
             mqttTempMsg = message;
+            print('Received message: $mqttTempMsg');
           });
-        } else if (c[0].topic == 'topicNmae/salt') {
+        } else if (c[0].topic == 'topicName/salt') {
           setState(() {
             lastMqttSaltMsg = mqttSaltMsg;
             mqttSaltMsg = message;
